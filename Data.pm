@@ -3,6 +3,7 @@ package Schema::Data;
 use strict;
 use warnings;
 
+use Class::Utils qw(set_params);
 use English;
 use Error::Pure qw(err);
 
@@ -36,10 +37,10 @@ sub new {
 		err "Parameter 'dsn' is required.";
 	}
 
-	eval "require $self->{'_schema_module'}";
+	eval "require $self->{'schema_module'}";
 	if ($EVAL_ERROR) {
 		err 'Cannot load Schema module.',
-			'Module name', $self->{'_schema_module'},
+			'Module name', $self->{'schema_module'},
 			'Error', $EVAL_ERROR,
 		;
 	}
