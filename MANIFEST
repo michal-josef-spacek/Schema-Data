@@ -2,6 +2,7 @@ Changes
 CONCEPT
 Data.pm
 Data/Data.pm
+examples/list_data_versions.pl
 inc/Module/Install.pm
 inc/Module/Install/AuthorRequires.pm
 inc/Module/Install/AuthorTests.pm
