@@ -33,8 +33,8 @@ sub new {
 	}
 
 	if ($self->{'version'} !~ /^([0-9]+)\.([0-9]+)\.([0-9]+)$/) {
-		err 'Schema version has bad format.',
-			'Schema version', $self->{'version'},
+		err 'Schema data version has bad format.',
+			'Schema data version', $self->{'version'},
 		;
 	}
 
@@ -72,7 +72,7 @@ sub version {
 sub _versions_file {
 	my $self = shift;
 
-	err "We need to implement distribution file with Schema versions.";
+	err "We need to implement distribution file with Schema data versions.";
 
 	return;
 }
