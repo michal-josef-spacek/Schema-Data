@@ -3,7 +3,12 @@ abstract: 'Abstract class for classes for database data.'
 author:
   - 'Michal Josef Spacek <skim@cpan.org>'
 build_requires:
+  English: 0
   ExtUtils::MakeMaker: 6.59
+  File::Object: 0
+  File::Spec::Functions: 0
+  File::Temp: 0
+  IO::Barf: 0
   Test::More: 0
   Test::NoWarnings: 0
 configure_requires:
@@ -25,6 +30,8 @@ requires:
   Class::Utils: 0
   English: 0
   Error::Pure: 0
+  List::Util: 0
+  Perl6::Slurp: 0
   perl: 5.6.0
 resources:
   bugtracker: https://github.com/michal-josef-spacek/Schema-Data/issues

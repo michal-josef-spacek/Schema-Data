@@ -6,6 +6,7 @@ use warnings;
 use Class::Utils qw(set_params);
 use English;
 use Error::Pure qw(err);
+use Perl6::Slurp qw(slurp);
 
 our $VERSION = 0.01;
 
@@ -15,81 +16,65 @@ sub new {
 	# Create object.
 	my $self = bless {}, $class;
 
-	# db user password.
-	$self->{'db_password'} = undef;
-
-	# db user name.
-	$self->{'db_user'} = undef;
-
-	# db options.
-	$self->{'db_options'} = {};
-
-	# DSN.
-	$self->{'dsn'} = undef;
-
-	# Schema module.
-	$self->{'schema_module'} = undef;
+	# Version.
+	$self->{'version'} = undef;
 
 	# Process parameters.
 	set_params($self, @params);
 
-	if (! defined $self->{'dsn'}) {
-		err "Parameter 'dsn' is required.";
+	# Load file with versions.
+	$self->{'_versions_file'} = $self->_versions_file;
+	my @versions = slurp($self->{'_versions_file'}, {'chomp' => 1});
+	$self->{'_versions'} = \@versions;
+
+	# Set version to last if isn't defined.
+	if (! defined $self->{'version'}) {
+		$self->{'version'} = $self->{'_versions'}->[-1];
 	}
 
-	eval "require $self->{'schema_module'}";
-	if ($EVAL_ERROR) {
-		err 'Cannot load Schema module.',
-			'Module name', $self->{'schema_module'},
-			'Error', $EVAL_ERROR,
+	if ($self->{'version'} !~ /^([0-9]+)\.([0-9]+)\.([0-9]+)$/) {
+		err 'Schema version has bad format.',
+			'Schema version', $self->{'version'},
 		;
 	}
-	$self->{'_schema'} = eval {
-		$self->{'schema_module'}->connect(
-			$self->{'dsn'},
-			$self->{'user'},
-			$self->{'password'},
-			$self->{'db_options'},
-		);
-	};
+
+	# Load schema.
+	$self->{'_schema_data_module'} = $class.'::'."$1\_$2\_$3";
+	eval 'require '.$self->{'_schema_data_module'};
 	if ($EVAL_ERROR) {
-		err 'Cannot connect to Schema database.',
+		err 'Cannot load Schema data module.',
+			'Module name', $self->{'_schema_data_module'},
 			'Error', $EVAL_ERROR,
-		;
-	}
-	if (! $self->{'_schema'}->isa('DBIx::Class::Schema')) {
-		err "Instance of schema must be a 'DBIx::Class::Schema' object.",
-			'Reference', $self->{'_schema'}->isa,
 		;
 	}
 
 	return $self;
 }
 
-sub insert {
+sub list_versions {
 	my $self = shift;
 
-	my $data_hr = $self->data;
-	foreach my $source ($self->{'_schema'}->sources) {
-		my $rs = $self->{'_schema'}->source($source);
-
-		# Skip source table without data.
-		if (! exists $data_hr->{$rs->name}) {
-			next;
-		}
-
-		# Insert.
-		foreach my $data_hr (@{$data_hr->{$rs->name}}) {
-			$self->{'_schema'}->resultset($source)->create($data_hr);
-		}
-	}
-
-	return;
+	return sort @{$self->{'_versions'}};
 }
 
-sub data {
-	err 'Package __PACKAGE__ is abstract class. data() method must be '.
-		'defined in inherited class.';
+sub schema_data {
+	my $self = shift;
+
+	return $self->{'_schema_data_module'};
+}
+
+sub version {
+	my $self = shift;
+
+	return $self->{'version'};
+}
+
+sub _versions_file {
+	my $self = shift;
+
+	err "We need to implement distribution file with Schema versions.";
+
+	return;
 }
 
 1;
