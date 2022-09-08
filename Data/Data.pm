@@ -8,7 +8,7 @@ use English;
 use Error::Pure qw(err);
 use List::Util qw(none);
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 sub new {
 	my ($class, @params) = @_;
