@@ -20,7 +20,7 @@ recursive_author_tests('xt');
 requires 'Class::Utils' => 0;
 requires 'English' => 0;
 requires 'Error::Pure' => 0;
-requires 'List::Util' => 0;
+requires 'List::Util' => 1.33;
 requires 'Perl6::Slurp' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/Schema-Data/issues',
 resources 'homepage' => 'https://github.com/michal-josef-spacek/Schema-Data';

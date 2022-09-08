@@ -1,4 +1,5 @@
 0.02
+ - Fix minimal dependency for List::Util.
 
 0.01 2022-09-08T01:50:32+02:00
  - First version.
