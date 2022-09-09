@@ -69,6 +69,11 @@ sub new {
 	return $self;
 }
 
+sub data {
+	err 'Package __PACKAGE__ is abstract class. data() method must be '.
+		'defined in inherited class.';
+}
+
 sub insert {
 	my $self = shift;
 
@@ -104,11 +109,6 @@ sub insert {
 	}
 
 	return;
-}
-
-sub data {
-	err 'Package __PACKAGE__ is abstract class. data() method must be '.
-		'defined in inherited class.';
 }
 
 1;
