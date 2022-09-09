@@ -2,10 +2,12 @@ TODO
 ====
 1. Doc for Schema::Data::Data.
 2. Tests for Schema::Data::Data.
-4. Add method for templated insert. e.g. Creator is custom.
 5.
 
 Applied
 =======
 3. Add schema_version
 OK [20220908] skim
+
+4. Add method for templated insert. e.g. Creator is custom.
+OK [20220909] skim

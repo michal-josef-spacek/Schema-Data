@@ -1,4 +1,5 @@
 0.03
+ - Add variables for insert() in Schema::Data::Data.
 
 0.02 2022-09-09T01:21:56+02:00
  - Fix minimal dependency for List::Util.

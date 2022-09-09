@@ -70,14 +70,23 @@ sub new {
 }
 
 sub data {
+	my ($self, $variables_hr) = @_;
+
 	err 'Package __PACKAGE__ is abstract class. data() method must be '.
 		'defined in inherited class.';
 }
 
 sub insert {
-	my $self = shift;
+	my ($self, $variables_hr) = @_;
 
-	my $data_hr = $self->data;
+	# Check required variables.
+	foreach my $required_variable ($self->required_variables) {
+		if (! exists $variables_hr->{$required_variable}) {
+			err "Variable '$required_variable' is required.";
+		}
+	}
+
+	my $data_hr = $self->data($variables_hr);
 	my %sources = map { ($self->{'_schema'}->source($_)->name => $_ ) }
 		$self->{'_schema'}->sources;
 
@@ -109,6 +118,13 @@ sub insert {
 	}
 
 	return;
+}
+
+sub required_variables {
+	my $self = shift;
+
+	err 'Package __PACKAGE__ is abstract class. required_variables() method must be '.
+		'defined in inherited class.';
 }
 
 1;
