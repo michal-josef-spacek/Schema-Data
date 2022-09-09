@@ -2,7 +2,8 @@ TODO
 ====
 1. Doc for Schema::Data::Data.
 2. Tests for Schema::Data::Data.
-5.
+5. Fix EXAMPLE in schema-data for Commons::Vote schema.
+6.
 
 Applied
 =======
