@@ -1,4 +1,5 @@
 0.04
+ - Add 'db_debug' parameter to Schema::Data::Data.
  - Fix Schema::Data::Data user and password setting.
 
 0.03 2022-09-09T17:06:05+02:00

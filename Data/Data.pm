@@ -16,6 +16,9 @@ sub new {
 	# Create object.
 	my $self = bless {}, $class;
 
+	# db debug.
+	$self->{'db_debug'} = 0;
+
 	# db user password.
 	$self->{'db_password'} = undef;
 
@@ -64,6 +67,10 @@ sub new {
 		err "Instance of schema must be a 'DBIx::Class::Schema' object.",
 			'Reference', $self->{'_schema'}->isa,
 		;
+	}
+
+	if ($self->{'db_debug'}) {
+		$self->{'_schema'}->storage->debug(1);
 	}
 
 	return $self;
