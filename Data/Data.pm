@@ -50,8 +50,8 @@ sub new {
 	$self->{'_schema'} = eval {
 		$self->{'schema_module'}->connect(
 			$self->{'dsn'},
-			$self->{'user'},
-			$self->{'password'},
+			$self->{'db_user'},
+			$self->{'db_password'},
 			$self->{'db_options'},
 		);
 	};
