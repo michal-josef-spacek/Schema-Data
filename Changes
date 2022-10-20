@@ -1,4 +1,5 @@
 0.05
+ - Add schema() method to Schema::Data::Data abstract class.
 
 0.04 2022-10-04T23:13:21+02:00
  - Add 'db_debug' parameter to Schema::Data::Data.

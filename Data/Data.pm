@@ -134,6 +134,12 @@ sub required_variables {
 		'defined in inherited class.';
 }
 
+sub schema {
+	my $self = shift;
+
+	return $self->{'_schema'};
+}
+
 1;
 
 __END__
