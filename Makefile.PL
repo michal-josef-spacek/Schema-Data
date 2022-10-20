@@ -22,6 +22,7 @@ requires 'English' => 0;
 requires 'Error::Pure' => 0;
 requires 'List::Util' => 1.33;
 requires 'Perl6::Slurp' => 0;
+requires 'Scalar::Util' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/Schema-Data/issues',
 resources 'homepage' => 'https://github.com/michal-josef-spacek/Schema-Data';
 resources 'repository' => 'git://github.com/michal-josef-spacek/Schema-Data';
