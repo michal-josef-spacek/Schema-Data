@@ -1,4 +1,4 @@
-0.05
+0.05 2022-10-20T11:19:03+02:00
  - Add schema() method to Schema::Data::Data abstract class.
  - Add Schema::Data::Plugin abstract class.
 
