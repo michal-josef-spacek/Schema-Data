@@ -6,4 +6,4 @@ use Test::More 'tests' => 2;
 use Test::NoWarnings;
 
 # Test.
-is($Schema::Data::Data::VERSION, 0.06, 'Version.');
+is($Schema::Data::Data::VERSION, 0.07, 'Version.');
