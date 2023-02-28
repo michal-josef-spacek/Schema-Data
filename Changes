@@ -1,5 +1,6 @@
 0.06
  - Add README file.
+ - Update copyright years.
 
 0.05 2022-10-20T11:19:03+02:00
  - Add schema() method to Schema::Data::Data abstract class.
