@@ -16,6 +16,7 @@ author_requires 'Test::Pod::Coverage' => 0;
 license 'bsd';
 name 'Schema-Data';
 perl_version 5.006;
+readme_from 'Data.pm';
 recursive_author_tests('xt');
 requires 'Class::Utils' => 0;
 requires 'English' => 0;
